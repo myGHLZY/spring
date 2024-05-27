@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    配置通知类-->
+    <bean id="MyAdvice" class="org.example.advice.MyAdvice"></bean>
+<!--    配置目标增强类-->
+    <bean id="userService" class="org.example.service.impl.UserServiceImpl"></bean>
+<!--配置aop-->
+    <aop:config proxy-target-class="false">
+<!--        配置切点表达式(可以有多个) 指定哪些方法被增强-->
+        <aop:pointcut id="myPointCut" expression="execution(void org.example.service.impl.UserServiceImpl.show1())"/>
+<!--        配置织入-->
+        <aop:aspect ref="MyAdvice">
+            <aop:before method="beforeAdvice" pointcut-ref="myPointCut"></aop:before>
+            <aop:after method="afterAdvice" pointcut-ref="myPointCut"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+
+
+</beans>
