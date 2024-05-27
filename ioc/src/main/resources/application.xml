@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    使用静态工厂方式，在Bean对象创建前后，都能进行操作/在第三方Bean中也有静态工厂配置方式-->
+    <bean id="userDaoStaticFactory" class="org.example.factory.MyBeanFactory1" factory-method="userDao">
+        <constructor-arg name="name" value="有参数的BeanFactory构造Bean对象"></constructor-arg>
+    </bean>
+<!--    使用非静态工厂方式 先创建Bean工厂对象-->
+    <bean id="userDaoFactory" class="org.example.factory.MyBeanFactory2"></bean>
+    <bean id="userDaoFactory2" factory-bean="userDaoFactory" factory-method="userDao"></bean>
+
+<!--    使用FactoryBean方式，实现FactoryBean接口，自动返回getObject方法的对象-->
+    <bean id="userDaoFactoryBean" class="org.example.factory.MyBeanFactory3"></bean>
+</beans>

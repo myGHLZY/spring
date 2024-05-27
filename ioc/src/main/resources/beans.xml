@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    lazy-init 延迟加载 在ApplicationContext中，设置lazy-init为true 则在getBean中才创建Bean对象(还是单例的)-->
+<!--    scope :prototype 原型 在调用getBean方法时才创建Bean对象，且每次getBean获得不同的Bean对象(不往单例池中放)  singleton 单例 一开始就创建Bean对象，Bean对象只有一个-->
+    <bean id = "userService" class="org.example.service.impl.UserServiceImpl" >
+        <constructor-arg name="name" value="有参构造"></constructor-arg>
+<!--        property 是属性设置 将会调用Bean对象的set方法 name既set方法的名字 ref为引用的对象-->
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    <bean id = "userDao" class="org.example.dao.impl.UserDaoImpl"></bean>
+
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="userService" class="org.example.service.impl.UserServiceImpl">
+        <constructor-arg name="name" value="有参构造"/>
+        <property name="list" >
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="userDao" ref="userDao"></property>
+        <property name="userDaos">
+            <set>
+                <ref bean="userDao"></ref>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="userDao" class="org.example.dao.impl.UserDaoImpl"></bean>
+
+</beans>

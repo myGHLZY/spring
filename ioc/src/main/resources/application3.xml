@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    autowire 自动装配 byName是通过userService2内的set方法后的名字在xml文件中寻找一样的bean对象进行注入-->
+    <!--    autowire 自动装配 byType是在xml文件中寻找一样的类型 多个相同类型会报错-->
+    <bean id="userService2" class="org.example.service.impl.UserServiceImpl2" autowire="byName"></bean>
+<!--    <bean id="userDao" class="org.example.dao.impl.UserDaoImpl"></bean>-->
+
+
+</beans>

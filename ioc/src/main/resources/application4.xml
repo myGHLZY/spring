@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.cj.Drive"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/Oasis"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="ACEG1234554321"></property>
+    </bean>
+
+    <bean id="clazz" class="java.lang.Class" factory-method="forName">
+        <constructor-arg name="className" value="com.mysql.jdbc.Driver"></constructor-arg>
+    </bean>
+
+    <bean id="connection" class="java.sql.DriverManager" factory-method="getConnection" scope="prototype">
+        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/Oasis"></constructor-arg>
+        <constructor-arg name="user" value="root"></constructor-arg>
+        <constructor-arg name="password" value="ACEG1234554321"></constructor-arg>
+    </bean>
+
+    <bean id="dataFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg name="pattern" value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+    </bean>
+
+    <bean id="data" class="java.util.Date" factory-bean="dataFormat" factory-method="parse">
+        <constructor-arg name="source" value="2023-12-12 12:12:12"></constructor-arg>
+    </bean>
+
+
+
+    <bean id="in" class="org.apache.ibatis.io.Resources" factory-method="getResourceAsStream">
+        <constructor-arg name="resource" value="mybatis-config.xml"></constructor-arg>
+    </bean>
+
+    <bean id="sqlSessionFactoryBuilder" class="org.apache.ibatis.session.SqlSessionFactoryBuilder"></bean>
+
+    <bean id="sqlSessionFactory" factory-bean="sqlSessionFactoryBuilder" factory-method="build">
+        <constructor-arg name="inputStream" ref="in"></constructor-arg>
+    </bean>
+</beans>
