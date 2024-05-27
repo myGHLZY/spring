@@ -1,2 +1,15 @@
 # Spring框架
 - spring是一个开源的**轻量级**Java开发应用框架，可以简化企业级应用开发
+- 简单的梳理了关于Spring的基础知识
+    - BeanFactory
+    - ApplicationContext
+    - Spring的配置文件Application.xml
+    - Bean实例化的基本流程
+    - Spring的后处理器
+    - Spring完整的生命周期
+    - 三级缓存
+    - Spring整合第三方框架
+    - 基于注解的Spring应用
+    - AOP(Aspect Oriented Programming)
+    - 基于AOP的声明式事务控制
+    - 基于注解的AOP声明式事务控制
